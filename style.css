@@ -44,7 +44,7 @@ body {
     height: 300px;
     top: -150px;
     left: -150px;
-    background: rgba(255, 215, 0, 0.1);
+    background: rgba(255, 170, 0, 0.1);
 }
 
 .shape2 {
@@ -52,7 +52,7 @@ body {
     height: 400px;
     bottom: -200px;
     right: -200px;
-    background: rgba(255, 170, 0, 0.1);
+    background: rgba(255, 135, 0, 0.1);
 }
 
 .shape3 {
@@ -221,7 +221,7 @@ body {
 
 .skill-level {
     height: 100%;
-    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    background: linear-gradient(90deg, #FFC0CB, #FFA500);
     border-radius: 10px;
     transition: width 1s ease;
 }
