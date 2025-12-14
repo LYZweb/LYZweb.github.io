@@ -1,394 +1,487 @@
-    // 页面切换功能
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM加载完成，开始初始化...');
-        
-        // 页面切换功能
-        function initPageSwitcher() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page');
+// 文章数据
+const articles = {
+    'Office激活工具使用教程': {
+        id: 'office-activation-guide',
+        title: 'Office激活工具使用教程',
+        date: '2024-03-20',
+        readTime: '10分钟阅读',
+        category: '软件教程',
+        image: './images/officeb.png',
+        // 添加下载链接
+        downloadUrl: 'https://share.feijipan.com/s/QPZqPPsL?code=LYZ6',
+        content: `
+            <h3>Office激活工具简介</h3>
+            <p>这款Office激活工具是专为Mac用户设计的简单易用的激活解决方案，只需几步操作即可完成Office套件的激活。</p>
             
-            console.log('找到导航链接:', navLinks.length);
-            console.log('找到页面:', pages.length);
+            <h3>准备工作</h3>
+            <ul>
+                <li>确保已安装Office for Mac（2016、2019或2021版本）</li>
+                <li>下载并解压Office激活工具（.iso文件）</li>
+                <li>关闭所有Office应用程序</li>
+                <li>确保Mac系统版本在10.13或以上</li>
+            </ul>
             
-            // 简单的页面切换函数
-            function switchPage(pageId) {
-                console.log('切换到页面:', pageId);
+            <h3>激活步骤</h3>
+            <ol>
+                <li>双击打开下载的.iso文件</li>
+                <li>将激活工具拖拽到"应用程序"文件夹</li>
+                <li>打开"应用程序"文件夹，右键点击激活工具选择"打开"</li>
+                <li>在弹出的窗口中点击"开始激活"按钮</li>
+                <li>等待激活过程完成（约1-2分钟）</li>
+                <li>重启Office应用程序验证激活状态</li>
+            </ol>
+            
+            <h3>注意事项</h3>
+            <div style="background: rgba(250, 128, 114, 0.1); border-left: 4px solid #FA8072; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                <p style="color: #FA8072; font-weight: 600; margin-bottom: 8px;">重要提醒：</p>
+                <ul style="color: rgba(255, 255, 255, 0.85);">
+                    <li>激活前请备份重要数据</li>
+                    <li>确保网络连接稳定</li>
+                    <li>如遇问题，可尝试重新启动Mac后再试</li>
+                    <li>本工具仅用于学习测试目的</li>
+                </ul>
+            </div>
+            
+            <h3>常见问题解答</h3>
+            <div style="background: rgba(250, 128, 114, 0.08); border: 1px solid rgba(250, 128, 114, 0.2); padding: 15px; margin: 15px 0; border-radius: 8px;">
+                <p><strong style="color: #FA8072;">Q: 激活后Office提示未激活？</strong><br>
+                A: 请尝试重新运行激活工具，并确保Office应用程序完全关闭。</p>
                 
-                // 隐藏所有页面
-                pages.forEach(page => {
-                    page.style.display = 'none';
-                    page.classList.remove('active');
-                });
-                
-                // 显示目标页面
-                const targetPage = document.getElementById(pageId);
-                if (targetPage) {
-                    targetPage.style.display = 'block';
-                    targetPage.classList.add('active');
-                    console.log('页面显示成功:', pageId);
-                } else {
-                    console.error('找不到页面元素:', pageId);
-                }
-                
-                // 更新导航链接状态
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    const linkPage = link.getAttribute('data-page') || link.getAttribute('href').substring(1);
-                    if (linkPage === pageId) {
-                        link.classList.add('active');
-                    }
-                });
-            }
+                <p><strong style="color: #FA8072;">Q: 激活工具无法打开？</strong><br>
+                A: 在"系统偏好设置 > 安全性与隐私"中允许运行未识别的应用程序。</p>
+            </div>
             
-            // 为导航链接添加点击事件
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const pageId = this.getAttribute('data-page') || this.getAttribute('href').substring(1);
-                    console.log('导航链接点击:', pageId);
-                    switchPage(pageId);
-                });
-            });
+            <div style="background: rgba(76, 175, 80, 0.1); border-left: 4px solid #4CAF50; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                <p style="color: #4CAF50; font-weight: 600; margin-bottom: 8px;">
+                    <i class="fas fa-download" style="margin-right: 8px;"></i>
+                    相关软件下载
+                </p>
+                <p style="color: rgba(255, 255, 255, 0.85);">
+                    本文提到的Office激活工具可以在下载页面获取。点击下方按钮前往下载。
+                </p>
+            </div>
+        `
+    },
+    'misakaX软件使用指南': {
+        id: 'pc-tool-crack-guide',
+        title: '电脑工具软件破解指南',
+        date: '2024-03-18',
+        readTime: '20分钟阅读',
+        category: '设备破解',
+        image: 'images/misakaXb.jpeg',
+        // 添加下载链接
+        downloadUrl: 'https://share.feijipan.com/s/X1ZqP2yW?code=LYZ6',
+        content: `
+            <h3>工具简介</h3>
+            <p>这款电脑工具软件能够为iPad和iPhone设备解锁高级功能，支持多种设备型号和iOS版本。</p>
             
-            // 处理URL哈希
-            function handleHashChange() {
-                const hash = window.location.hash.substring(1);
-                console.log('当前哈希:', hash);
-                if (hash && ['home', 'download', 'tutorial'].includes(hash)) {
-                    switchPage(hash);
-                } else {
-                    switchPage('home');
-                }
-            }
+            <h3>所需工具</h3>
+            <ul>
+                <li>电脑工具软件（已下载的.zip文件）</li>
+                <li>需要解锁的iPad/iPhone设备</li>
+                <li>USB数据线</li>
+                <li>Windows 10/11或macOS系统</li>
+                <li>iTunes最新版本</li>
+            </ul>
             
-            // 初始加载时处理哈希
-            handleHashChange();
+            <h3>操作流程</h3>
+            <ol>
+                <li>解压下载的.zip文件到任意文件夹</li>
+                <li>安装并运行电脑工具主程序</li>
+                <li>使用USB线连接设备到电脑</li>
+                <li>在软件中识别并选择连接的设备</li>
+                <li>选择需要解锁的功能模块</li>
+                <li>点击"开始破解"按钮</li>
+                <li>等待破解过程完成（设备可能自动重启）</li>
+                <li>验证解锁功能是否生效</li>
+            </ol>
             
-            // 监听哈希变化
-            window.addEventListener('hashchange', handleHashChange);
+            <h3>支持的功能</h3>
+            <ul>
+                <li>应用多开功能</li>
+                <li>系统主题自定义</li>
+                <li>高级权限获取</li>
+                <li>隐藏功能解锁</li>
+                <li>性能优化调整</li>
+            </ul>
             
-            // 返回主页按钮
-            const backHomeBtn = document.querySelector('.back-home-btn');
-            if (backHomeBtn) {
-                backHomeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('返回主页按钮点击');
-                    switchPage('home');
-                });
-            }
+            <h3>重要提醒</h3>
+            <div style="background: rgba(250, 128, 114, 0.12); border-left: 4px solid #FA8072; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                <p style="color: #FA8072; font-weight: 700; margin-bottom: 8px;">⚠️ 警告：</p>
+                <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 10px;">破解设备可能违反设备保修条款，并存在一定风险。建议操作前：</p>
+                <ul style="color: rgba(255, 255, 255, 0.85);">
+                    <li>完整备份设备数据</li>
+                    <li>确保设备电量充足（建议80%以上）</li>
+                    <li>了解可能的风险和后果</li>
+                    <li>仅用于合法学习研究目的</li>
+                </ul>
+            </div>
             
-            return switchPage;
-        }
-        
-        // 移动端菜单功能
-        function initMobileMenu() {
-            const navToggle = document.getElementById('navToggle');
-            const navLinksContainer = document.querySelector('.nav-links');
+            <div style="background: rgba(76, 175, 80, 0.1); border-left: 4px solid #4CAF50; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                <p style="color: #4CAF50; font-weight: 600; margin-bottom: 8px;">
+                    <i class="fas fa-download" style="margin-right: 8px;"></i>
+                    相关软件下载
+                </p>
+                <p style="color: rgba(255, 255, 255, 0.85);">
+                    本文提到的电脑工具软件可以在下载页面获取。点击下方按钮前往下载。
+                </p>
+            </div>
+        `
+    },
+    '安卓灵动岛软件配置教程': {
+        id: 'android-dynamic-island-guide',
+        title: '安卓灵动岛软件配置教程',
+        date: '2024-03-22',
+        readTime: '15分钟阅读',
+        category: '安卓定制',
+        image: 'images/lddb.jpg',
+        // 添加下载链接
+        downloadUrl: 'https://share.feijipan.com/s/dQZqP5om?code=LYZ6',
+        content: `
+            <h3>什么是灵动岛？</h3>
+            <p>灵动岛是苹果iPhone 14 Pro系列引入的创新交互设计，本软件将其移植到安卓设备，提供类似的使用体验。</p>
             
-            if (navToggle && navLinksContainer) {
-                navToggle.addEventListener('click', function() {
-                    navLinksContainer.classList.toggle('active');
-                    this.classList.toggle('active');
-                });
-            }
-        }
-        
-        // 下载按钮功能
-        function initDownloadButtons() {
-            const downloadBtns = document.querySelectorAll('.download-btn');
-            console.log('找到下载按钮:', downloadBtns.length);
+            <h3>安装前准备</h3>
+            <ul>
+                <li>安卓8.0或更高版本系统</li>
+                <li>开启"未知来源应用"安装权限</li>
+                <li>下载灵动岛软件.apk文件</li>
+                <li>确保设备有足够存储空间</li>
+            </ul>
             
-            downloadBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const item = this.closest('.download-item');
-                    const title = item.querySelector('h3').textContent;
-                    
-                    // 创建下载提示
-                    const message = document.createElement('div');
-                    message.className = 'download-message';
-                    message.innerHTML = `
-                        <div class="download-message-content">
-                            <i class="fas fa-download"></i>
-                            <p>正在下载 "${title}"</p>
-                            <div class="download-progress">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <p class="download-note">这是一个演示功能，实际应用中会连接到真实文件</p>
-                        </div>
-                    `;
-                    
-                    message.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background: rgba(0, 0, 0, 0.7);
-                        backdrop-filter: blur(10px);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 10000;
-                        animation: fadeIn 0.3s ease;
-                    `;
-                    
-                    document.body.appendChild(message);
-                    
-                    // 模拟下载进度
-                    const progressBar = message.querySelector('.progress-bar');
-                    let progress = 0;
-                    const interval = setInterval(() => {
-                        progress += Math.random() * 10;
-                        if (progress >= 100) {
-                            progress = 100;
-                            clearInterval(interval);
-                            
-                            // 下载完成
-                            setTimeout(() => {
-                                message.innerHTML = `
-                                    <div class="download-message-content">
-                                        <i class="fas fa-check-circle" style="color:#4CAF50;font-size:3rem;"></i>
-                                        <p>"${title}" 下载完成！</p>
-                                        <button class="close-message-btn">关闭</button>
-                                    </div>
-                                `;
-                                
-                                message.querySelector('.close-message-btn').addEventListener('click', () => {
-                                    message.remove();
-                                });
-                            }, 500);
-                        }
-                        progressBar.style.width = progress + '%';
-                    }, 100);
-                    
-                    // 点击背景关闭
-                    message.addEventListener('click', function(e) {
-                        if (e.target === this) {
-                            this.remove();
-                            clearInterval(interval);
-                        }
-                    });
-                });
-            });
-        }
-        
-        // 教程分类功能
-        function initTutorialCategories() {
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            console.log('找到分类按钮:', categoryBtns.length);
+            <h3>安装步骤</h3>
+            <ol>
+                <li>在文件管理器中找到下载的.apk文件</li>
+                <li>点击安装，允许所需权限</li>
+                <li>安装完成后不要立即打开</li>
+                <li>进入"设置 > 应用管理"找到灵动岛应用</li>
+                <li>开启"显示在其他应用上层"权限</li>
+                <li>开启"无障碍服务"权限</li>
+                <li>重启设备</li>
+            </ol>
             
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // 移除所有按钮的active类
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    // 给当前点击的按钮添加active类
-                    this.classList.add('active');
-                    
-                    const category = this.textContent;
-                    console.log('选择分类:', category);
-                });
-            });
-        }
-        
-        // 毛玻璃卡片效果
-        function initGlassCardEffects() {
-            const glassCards = document.querySelectorAll('.glass-card');
-            console.log('找到毛玻璃卡片:', glassCards.length);
+            <h3>基础配置</h3>
+            <ol>
+                <li>打开灵动岛应用</li>
+                <li>进入"设置"菜单</li>
+                <li>调整灵动岛位置和大小</li>
+                <li>选择显示的通知类型</li>
+                <li>自定义动画效果</li>
+                <li>设置交互手势</li>
+                <li>保存配置并启用</li>
+            </ol>
             
-            glassCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.backdropFilter = 'blur(15px)';
-                });
+            <h3>高级功能设置</h3>
+            <ul>
+                <li><strong style="color: #FA8072;">音乐控制：</strong>显示当前播放的音乐并支持控制</li>
+                <li><strong style="color: #FA8072;">通知预览：</strong>在灵动岛中预览通知内容</li>
+                <li><strong style="color: #FA8072;">电量显示：</strong>实时显示设备电量状态</li>
+                <li><strong style="color: #FA8072;">快捷操作：</strong>快速启动常用功能</li>
+                <li><strong style="color: #FA8072;">主题自定义：</strong>更换灵动岛颜色和样式</li>
+            </ul>
+            
+            <h3>故障排除</h3>
+            <div style="background: rgba(250, 128, 114, 0.08); border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <div style="margin-bottom: 15px;">
+                    <p><strong style="color: #FA8072;">问题：</strong>灵动岛不显示<br>
+                    <strong style="color: #FA8072;">解决：</strong>检查是否开启所需权限，重启应用或设备。</p>
+                </div>
                 
-                card.addEventListener('mouseleave', function() {
-                    this.style.backdropFilter = 'blur(10px)';
-                });
-            });
-        }
-        
-        // 技能条动画
-        function initSkillBarAnimations() {
-            const skillBars = document.querySelectorAll('.skill-level');
-            console.log('找到技能条:', skillBars.length);
+                <div style="margin-bottom: 15px;">
+                    <p><strong style="color: #FA8072;">问题：</strong>通知不显示在灵动岛<br>
+                    <strong style="color: #FA8072;">解决：</strong>在应用设置中启用对应应用的通知权限。</p>
+                </div>
+                
+                <div>
+                    <p><strong style="color: #FA8072;">问题：</strong>动画卡顿<br>
+                    <strong style="color: #FA8072;">解决：</strong>降低动画质量或关闭不必要的特效。</p>
+                </div>
+            </div>
             
-            // 使用Intersection Observer API实现滚动时显示动画
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.3
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 当技能条进入视口时，触发宽度动画
-                        const skillLevel = entry.target;
-                        const width = skillLevel.style.width;
-                        skillLevel.style.width = '0';
-                        
-                        setTimeout(() => {
-                            skillLevel.style.transition = 'width 1.5s ease-in-out';
-                            skillLevel.style.width = width;
-                        }, 200);
-                        
-                        // 停止观察该元素
-                        observer.unobserve(skillLevel);
-                    }
-                });
-            }, observerOptions);
-            
-            // 观察所有技能条
-            skillBars.forEach(bar => {
-                observer.observe(bar);
-            });
-        }
-        
-        // 社交媒体按钮效果
-        function initSocialButtonEffects() {
-            const socialButtons = document.querySelectorAll('.social-btn');
-            console.log('找到社交媒体按钮:', socialButtons.length);
-            
-            socialButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // 创建涟漪效果
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.classList.add('ripple');
-                    
-                    this.appendChild(ripple);
-                    
-                    // 移除涟漪元素
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-        }
-        
-        // 背景效果
-        function initBackgroundEffects() {
-            const backgroundArea = document.querySelector('.background-area');
-            
-            // 创建更多背景形状
-            for (let i = 0; i < 5; i++) {
-                const shape = document.createElement('div');
-                shape.classList.add('bg-shape');
-                
-                // 随机位置和大小
-                const size = Math.random() * 150 + 50;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                
-                shape.style.width = size + 'px';
-                shape.style.height = size + 'px';
-                shape.style.left = posX + '%';
-                shape.style.top = posY + '%';
-                
-                // 随机颜色
-                const colors = [
-                    'rgba(255, 215, 0, 0.05)',
-                    'rgba(255, 170, 0, 0.05)',
-                    'rgba(255, 255, 255, 0.03)'
-                ];
-                shape.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                backgroundArea.appendChild(shape);
-            }
-        }
-        
-        // 添加下载消息样式
-        function addDownloadMessageStyles() {
-            const style = document.createElement('style');
-            style.textContent = `
-                .download-message-content {
-                    background: rgba(255, 255, 255, 0.2);
-                    backdrop-filter: blur(20px);
-                    border-radius: 20px;
-                    padding: 40px;
-                    text-align: center;
-                    max-width: 400px;
-                    width: 90%;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-                }
-                
-                .download-message-content i {
-                    font-size: 4rem;
-                    color: rgba(255, 255, 255, 0.9);
-                    margin-bottom: 20px;
-                }
-                
-                .download-message-content p {
-                    color: #fff;
-                    font-size: 1.2rem;
-                    margin-bottom: 20px;
-                }
-                
-                .download-progress {
-                    height: 8px;
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 4px;
-                    overflow: hidden;
-                    margin: 20px 0;
-                }
-                
-                .progress-bar {
-                    height: 100%;
-                    background: linear-gradient(90deg, #ffa100, #ff7b00);
-                    border-radius: 4px;
-                    width: 0%;
-                    transition: width 0.3s ease;
-                }
-                
-                .download-note {
-                    font-size: 0.9rem !important;
-                    color: rgba(255, 255, 255, 0.7) !important;
-                    font-style: italic;
-                }
-                
-                .close-message-btn {
-                    background: rgba(255, 255, 255, 0.25);
-                    color: #fff;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    padding: 10px 30px;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    margin-top: 20px;
-                }
-                
-                .close-message-btn:hover {
-                    background: rgba(255, 255, 255, 0.35);
-                    transform: translateY(-2px);
-                }
-                
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // 初始化所有功能
-        initPageSwitcher();
-        initMobileMenu();
-        initDownloadButtons();
-        initTutorialCategories();
-        initGlassCardEffects();
-        initSkillBarAnimations();
-        initSocialButtonEffects();
-        initBackgroundEffects();
-        addDownloadMessageStyles();
-        
-        console.log('页面初始化完成');
+            <div style="background: rgba(76, 175, 80, 0.1); border-left: 4px solid #4CAF50; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                <p style="color: #4CAF50; font-weight: 600; margin-bottom: 8px;">
+                    <i class="fas fa-download" style="margin-right: 8px;"></i>
+                    相关软件下载
+                </p>
+                <p style="color: rgba(255, 255, 255, 0.85);">
+                    本文提到的安卓灵动岛软件可以在下载页面获取。点击下方按钮前往下载。
+                </p>
+            </div>
+        `
+    }
+};
+
+// 当前文章变量
+let currentArticle = null;
+
+// 页面切换函数
+function switchPage(pageId) {
+    console.log('切换到页面:', pageId);
+    
+    // 隐藏所有页面
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.style.display = 'none';
     });
-    [file content end]
+    
+    // 显示目标页面
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.style.display = 'block';
+        console.log('页面显示成功:', pageId);
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 10);
+    }
+    
+    // 更新导航链接状态
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const linkPage = link.getAttribute('data-page');
+        if (linkPage === pageId) {
+            link.classList.add('active');
+        }
+    });
+    
+    return false;
+}
+
+// 加载文章函数
+function loadArticle(title) {
+    const article = articles[title];
+    if (!article) return;
+    
+    currentArticle = article; // 保存当前文章数据
+    
+    document.getElementById('article-title').textContent = article.title;
+    document.getElementById('article-date').textContent = article.date;
+    document.getElementById('article-read-time').textContent = article.readTime;
+    document.getElementById('article-category').textContent = article.category;
+    
+    const articleImage = document.getElementById('article-image');
+    articleImage.style.backgroundImage = `url('${article.image}')`;
+    
+    document.getElementById('article-content').innerHTML = article.content;
+}
+
+// 跳转到下载页面或直接下载的函数
+function goToDownload() {
+    if (currentArticle && currentArticle.downloadUrl) {
+        // 跳转到下载页面，同时传递文章信息
+        switchPage('download');
+        window.location.hash = 'download';
+        
+        // 可选：滚动到对应的下载项目
+        setTimeout(() => {
+            // 根据文章标题找到对应的下载项并高亮显示
+            const articleTitle = currentArticle.title;
+            let searchTerm = '';
+            
+            // 根据文章标题确定搜索关键词
+            if (articleTitle.includes('Office')) {
+                searchTerm = 'Office激活工具（MAC）';
+            } else if (articleTitle.includes('电脑工具')) {
+                searchTerm = '电脑工具 iPad&iPhone破解功能软件';
+            } else if (articleTitle.includes('安卓灵动岛')) {
+                searchTerm = '安卓系统灵动岛软件(破解版)';
+            }
+            
+            if (searchTerm) {
+                const downloadItems = document.querySelectorAll('.download-item h3');
+                downloadItems.forEach(item => {
+                    if (item.textContent.includes(searchTerm)) {
+                        const downloadItem = item.closest('.download-item');
+                        
+                        // 创建并添加高亮动画样式
+                        if (!document.querySelector('#highlight-style')) {
+                            const style = document.createElement('style');
+                            style.id = 'highlight-style';
+                            style.textContent = `
+                                @keyframes highlightItem {
+                                    0% { 
+                                        background: rgba(255, 255, 255, 0.15); 
+                                        transform: translateY(0);
+                                    }
+                                    50% { 
+                                        background: rgba(76, 175, 80, 0.3); 
+                                        box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+                                        transform: translateY(-5px);
+                                    }
+                                    100% { 
+                                        background: rgba(255, 255, 255, 0.15); 
+                                        transform: translateY(0);
+                                    }
+                                }
+                                
+                                .highlight-download-item {
+                                    animation: highlightItem 2s ease;
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        }
+                        
+                        // 添加高亮类
+                        downloadItem.classList.add('highlight-download-item');
+                        
+                        // 动画结束后移除类
+                        setTimeout(() => {
+                            downloadItem.classList.remove('highlight-download-item');
+                        }, 2000);
+                        
+                        // 滚动到该下载项
+                        downloadItem.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                });
+            }
+        }, 300);
+    } else {
+        // 如果没有特定的下载链接，直接跳转到下载页面
+        switchPage('download');
+        window.location.hash = 'download';
+    }
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('页面初始化开始...');
+    
+    // 导航链接点击事件
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageId = this.getAttribute('data-page');
+            if (pageId) {
+                switchPage(pageId);
+                window.location.hash = pageId;
+            }
+        });
+    });
+    
+    // 返回按钮点击事件
+    document.querySelectorAll('.back-home-btn, .back-to-tutorial-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageId = this.getAttribute('data-page');
+            if (pageId) {
+                switchPage(pageId);
+                window.location.hash = pageId;
+            }
+        });
+    });
+    
+    // 下载按钮事件（原来的分享按钮）
+    const downloadBtn = document.getElementById('downloadArticleBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', goToDownload);
+    }
+    
+    // 教程项点击事件
+    document.querySelectorAll('.tutorial-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        
+        item.addEventListener('click', function(e) {
+            if (e.target.closest('.meta-item')) return;
+            
+            const title = this.querySelector('h3').textContent;
+            
+            if (articles[title]) {
+                loadArticle(title);
+                switchPage('article-detail');
+                window.location.hash = 'article-' + articles[title].id;
+            } else {
+                alert('抱歉，这篇文章还在创作中，敬请期待！');
+            }
+        });
+    });
+    
+    // 下载按钮事件
+    document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const downloadUrl = this.getAttribute('data-download-url');
+            const title = this.closest('.download-item').querySelector('h3').textContent;
+            
+            if (downloadUrl) {
+                const message = document.createElement('div');
+                message.className = 'download-message';
+                message.innerHTML = `
+                    <div class="download-message-content">
+                        <i class="fas fa-external-link-alt"></i>
+                        <p>即将下载 "${title}"</p>
+                        <p class="download-note">正在跳转到下载链接...</p>
+                        <div class="download-actions">
+                            <button class="confirm-download-btn">确认下载</button>
+                            <button class="cancel-download-btn">取消</button>
+                        </div>
+                    </div>
+                `;
+                
+                message.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    backdrop-filter: blur(10px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                document.body.appendChild(message);
+                
+                message.querySelector('.confirm-download-btn').addEventListener('click', () => {
+                    window.open(downloadUrl, '_blank');
+                    message.remove();
+                });
+                
+                message.querySelector('.cancel-download-btn').addEventListener('click', () => {
+                    message.remove();
+                });
+                
+                message.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.remove();
+                    }
+                });
+            } else {
+                alert('下载链接未设置，请联系管理员获取下载地址。');
+            }
+        });
+    });
+    
+    // 哈希变化监听
+    function handleHashChange() {
+        const hash = window.location.hash.substring(1);
+        console.log('当前哈希:', hash);
+        
+        if (hash && ['home', 'download', 'tutorial', 'article-detail'].includes(hash)) {
+            switchPage(hash);
+        } else if (hash.startsWith('article-')) {
+            const articleId = hash.replace('article-', '');
+            const article = Object.values(articles).find(a => a.id === articleId);
+            if (article) {
+                loadArticle(article.title);
+                switchPage('article-detail');
+            } else {
+                switchPage('home');
+            }
+        } else {
+            switchPage('home');
+        }
+    }
+    
+    // 初始加载
+    handleHashChange();
+    
+    // 监听哈希变化
+    window.addEventListener('hashchange', handleHashChange);
+    
+    console.log('页面初始化完成');
+});

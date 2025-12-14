@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人介绍 - 毛玻璃特效</title>
+    <title>LYZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 移除 Google Fonts 链接 -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"> -->
     <style>
         /* 初始隐藏非主页页面 */
-        #download, #tutorial {
+        #download, #tutorial, #article-detail {
             display: none;
         }
         #home {
@@ -17,6 +18,7 @@
         }
     </style>
 </head>
+<!-- body 部分保持不变 -->
 <body>
     <div class="container">
         <!-- 顶栏导航 - 悬浮于其他内容之上 -->
@@ -27,15 +29,15 @@
                     <span>LYZ</span>
                 </div>
                 <div class="nav-links">
-                    <a href="#home" class="nav-link active" onclick="switchPage('home'); return false;">
+                    <a href="#home" class="nav-link active" data-page="home">
                         <i class="fas fa-home"></i>
                         <span>主页</span>
                     </a>
-                    <a href="#download" class="nav-link" onclick="switchPage('download'); return false;">
+                    <a href="#download" class="nav-link" data-page="download">
                         <i class="fas fa-download"></i>
                         <span>下载</span>
                     </a>
-                    <a href="#tutorial" class="nav-link" onclick="switchPage('tutorial'); return false;">
+                    <a href="#tutorial" class="nav-link" data-page="tutorial">
                         <i class="fas fa-graduation-cap"></i>
                         <span>教程</span>
                     </a>
@@ -126,7 +128,7 @@
                     <!-- 社交媒体链接卡片 -->
                     <section class="glass-card social-section">
                         <h2><i class="fas fa-share-alt"></i> 关注与联系</h2>
-                        <p class="section-desc">欢迎通过以下平台与我交流，关注我的最新动态和作品分享。</p>
+                        <p class="section-desc">欢迎通过以下平台与我交流，关注我的最新动态和技巧分享。</p>
                         
                         <div class="social-links">
                             <a href="https://www.xiaohongshu.com/user/profile/66eabe82000000001d023906" target="_blank" class="social-btn github-btn">
@@ -153,22 +155,22 @@
                 <main class="main-content">
                     <section class="glass-card download-section">
                         <h2><i class="fas fa-download"></i> 下载资源</h2>
-                        <p class="section-desc">这里提供我的设计资源、代码模板和作品集下载，所有资源都经过精心整理，可直接用于项目开发。</p>
+                        <p class="section-desc">这里提供我分享的软件资源。</p>
                         
                         <div class="download-items">
                             <div class="download-item">
                                 <div class="download-icon">
                                     <i class="fas fa-palette"></i>
                                 </div>
-                                <h3>UI设计资源包</h3>
-                                <p>包含常用UI组件、图标库、配色方案和设计规范，适用于Web和移动端设计。</p>
+                                <h3>Office激活工具（MAC）</h3>
+                                <p>只需安装就可使你的Office成功激活，过程十分简单。使用方法详见教程。</p>
                                 <div class="download-info">
-                                    <span class="file-size">45 MB</span>
-                                    <span class="file-format">.zip</span>
+                                    <span class="file-size">7 MB</span>
+                                    <span class="file-format">.iso</span>
                                 </div>
-                                <button class="download-btn">
+                                <button class="download-btn" data-download-url="https://share.feijipan.com/s/QPZqPPsL?code=LYZ6">
                                     <i class="fas fa-download"></i>
-                                    下载
+                                    下载(小飞机网盘)
                                 </button>
                             </div>
                             
@@ -176,15 +178,15 @@
                                 <div class="download-icon">
                                     <i class="fas fa-code"></i>
                                 </div>
-                                <h3>前端代码模板</h3>
-                                <p>响应式网页模板和常用JavaScript插件，包含现代前端开发的最佳实践。</p>
+                                <h3>电脑工具 iPad&iPhone破解功能软件</h3>
+                                <p>使用方法详见教程。</p>
                                 <div class="download-info">
-                                    <span class="file-size">28 MB</span>
+                                    <span class="file-size">77 MB</span>
                                     <span class="file-format">.zip</span>
                                 </div>
-                                <button class="download-btn">
+                                <button class="download-btn" data-download-url="https://share.feijipan.com/s/X1ZqP2yW?code=LYZ6">
                                     <i class="fas fa-download"></i>
-                                    下载
+                                    下载(小飞机网盘)
                                 </button>
                             </div>
                             
@@ -192,31 +194,16 @@
                                 <div class="download-icon">
                                     <i class="fas fa-file-pdf"></i>
                                 </div>
-                                <h3>个人作品集</h3>
-                                <p>精选项目案例和设计思路展示，包含完整的设计流程和实现细节。</p>
+                                <h3>安卓系统灵动岛软件(破解版)</h3>
+                                <p>在安卓设备上体验苹果的灵动岛。使用方法详见教程。</p>
                                 <div class="download-info">
-                                    <span class="file-size">15 MB</span>
-                                    <span class="file-format">.PDF</span>
+                                    <span class="file-size">9 MB</span>
+                                    <span class="file-format">.apk</span>
                                 </div>
-                                <button class="download-btn">
+                                <button class="download-btn" data-download-url="https://share.feijipan.com/s/dQZqP5om?code=LYZ6">
                                     <i class="fas fa-download"></i>
-                                    下载
+                                    下载(小飞机网盘)
                                 </button>
-                            </div>
-                        </div>
-                        
-                        <div class="download-stats">
-                            <div class="stat">
-                                <span class="stat-number">128</span>
-                                <span class="stat-label">总下载量</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">3</span>
-                                <span class="stat-label">资源数量</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">4.8</span>
-                                <span class="stat-label">平均评分</span>
                             </div>
                         </div>
                     </section>
@@ -228,65 +215,59 @@
                 <main class="main-content">
                     <section class="glass-card tutorial-section">
                         <h2><i class="fas fa-graduation-cap"></i> 教程与文章</h2>
-                        <p class="section-desc">分享前端开发、UI设计和实用技巧的教程文章。</p>
-                        
-                        <div class="tutorial-categories">
-                            <button class="category-btn active">全部</button>
-                            <button class="category-btn">前端开发</button>
-                            <button class="category-btn">UI设计</button>
-                            <button class="category-btn">实用技巧</button>
-                        </div>
+                        <p class="section-desc">分享电子设备实用技巧。</p>
                         
                         <div class="tutorial-list">
-                            <div class="tutorial-item">
-                                <div class="tutorial-img" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            
+                            <div class="tutorial-item" data-article-id="Office激活工具使用教程">
+                                <div class="tutorial-img" style="background-image: url('images/office.jpeg');"></div>
                                 <div class="tutorial-content">
-                                    <h3>毛玻璃特效实现指南</h3>
-                                    <p>详细讲解如何使用CSS实现Windows Vista风格的毛玻璃效果，包含代码示例和最佳实践。</p>
+                                    <h3>Office激活工具使用教程</h3>
+                                    <p>详细讲解如何在Mac上使用Office激活工具，包含每一步的操作说明和注意事项。</p>
                                     <div class="tutorial-meta">
                                         <div class="meta-item">
                                             <i class="far fa-clock"></i>
-                                            <span>15分钟阅读</span>
+                                            <span>10分钟阅读</span>
                                         </div>
                                         <div class="meta-item">
-                                            <i class="far fa-calendar"></i>
-                                            <span>2024-03-15</span>
+                                            <i class="fas fa-file"></i>
+                                            <span>软件教程</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="tutorial-item">
-                                <div class="tutorial-img" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="tutorial-item" data-article-id="电脑工具软件破解指南">
+                                <div class="tutorial-img" style="background-image: url('images/misakaX.png');"></div>
                                 <div class="tutorial-content">
-                                    <h3>响应式设计原理</h3>
-                                    <p>从基础到高级，掌握响应式网页设计的核心原理和实现技巧。</p>
-                                    <div class="tutorial-meta">
-                                        <div class="meta-item">
-                                            <i class="far fa-clock"></i>
-                                            <span>25分钟阅读</span>
-                                        </div>
-                                        <div class="meta-item">
-                                            <i class="far fa-calendar"></i>
-                                            <span>2024-03-10</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="tutorial-item">
-                                <div class="tutorial-img" style="background-image: url('https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
-                                <div class="tutorial-content">
-                                    <h3>JavaScript动画优化</h3>
-                                    <p>提升网页动画性能的实用技巧和最佳实践。</p>
+                                    <h3>misakaX软件使用指南</h3>
+                                    <p>讲解如何使用电脑工具为iPad和iPhone设备解锁功能，详细步骤和注意事项。</p>
                                     <div class="tutorial-meta">
                                         <div class="meta-item">
                                             <i class="far fa-clock"></i>
                                             <span>20分钟阅读</span>
                                         </div>
                                         <div class="meta-item">
-                                            <i class="far fa-calendar"></i>
-                                            <span>2024-03-05</span>
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <span>设备破解</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tutorial-item" data-article-id="安卓灵动岛软件配置教程">
+                                <div class="tutorial-img" style="background-image: url('images/ldd.jpeg');"></div>
+                                <div class="tutorial-content">
+                                    <h3>安卓灵动岛软件配置教程</h3>
+                                    <p>在安卓设备上安装和配置灵动岛软件的完整指南，包含个性化设置和故障排除。</p>
+                                    <div class="tutorial-meta">
+                                        <div class="meta-item">
+                                            <i class="far fa-clock"></i>
+                                            <span>15分钟阅读</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-robot"></i>
+                                            <span>安卓定制</span>
                                         </div>
                                     </div>
                                 </div>
@@ -295,10 +276,45 @@
                         
                         <div class="tutorial-cta">
                             <p>想要查看更多教程？欢迎关注我的社交媒体账号获取最新内容！</p>
-                            <a href="#home" class="back-home-btn" onclick="switchPage('home'); return false;">
+                            <button class="back-home-btn" data-page="home">
                                 <i class="fas fa-arrow-left"></i>
                                 返回主页
-                            </a>
+                            </button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            
+            <!-- 文章详情页面 -->
+            <div id="article-detail" class="page">
+                <main class="main-content">
+                    <section class="glass-card article-section">
+                        <div class="article-header">
+                            <button class="back-to-tutorial-btn" data-page="tutorial">
+                                <i class="fas fa-arrow-left"></i>
+                                返回教程列表
+                            </button>
+                            <h2 id="article-title">文章标题</h2>
+                            <div class="article-meta">
+                                <span><i class="far fa-calendar"></i> <span id="article-date">日期</span></span>
+                                <span><i class="far fa-clock"></i> <span id="article-read-time">阅读时间</span></span>
+                                <span><i class="fas fa-tag"></i> <span id="article-category">分类</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="article-image" id="article-image">
+                            <!-- 图片将通过JS动态设置 -->
+                        </div>
+                        
+                        <div class="article-content" id="article-content">
+                            <!-- 文章内容将通过JS动态加载 -->
+                        </div>
+                        
+                        <div class="article-footer">
+                            <button class="download-article-btn" id="downloadArticleBtn">
+                                <i class="fas fa-download"></i>
+                                前往下载相关软件
+                            </button>
                         </div>
                     </section>
                 </main>
@@ -314,342 +330,6 @@
         </footer>
     </div>
 
-    <script>
-        // 全局页面切换函数
-        function switchPage(pageId) {
-            console.log('切换到页面:', pageId);
-            
-            // 隐藏所有页面
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.style.display = 'none';
-            });
-            
-            // 显示目标页面
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.style.display = 'block';
-                console.log('页面显示成功:', pageId);
-                // 再次确保滚动到顶部（双重保险）
-                setTimeout(() => {
-                    window.scrollTo(0, 0);
-                }, 10);
-            } else {
-                console.error('找不到页面元素:', pageId);
-            }
-            
-            // 更新导航链接状态
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkHref = link.getAttribute('href');
-                if (linkHref === '#' + pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // 更新URL
-            window.location.hash = pageId;
-            
-            // 移动端：关闭菜单
-            const navLinksContainer = document.querySelector('.nav-links');
-            if (navLinksContainer && navLinksContainer.classList.contains('active')) {
-                navLinksContainer.classList.remove('active');
-            }
-            
-            return false;
-        }
-        
-        // 页面加载时初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM加载完成');
-            
-            // 处理初始URL哈希
-            const hash = window.location.hash.substring(1);
-            if (hash && ['home', 'download', 'tutorial'].includes(hash)) {
-                switchPage(hash);
-            } else {
-                switchPage('home');
-            }
-            
-            // 移动端菜单切换
-            const navToggle = document.getElementById('navToggle');
-            const navLinksContainer = document.querySelector('.nav-links');
-            
-            if (navToggle && navLinksContainer) {
-                navToggle.addEventListener('click', function() {
-                    navLinksContainer.classList.toggle('active');
-                    this.classList.toggle('active');
-                });
-            }
-            
-            // 下载按钮功能
-            const downloadBtns = document.querySelectorAll('.download-btn');
-            downloadBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const item = this.closest('.download-item');
-                    const title = item.querySelector('h3').textContent;
-                    
-                    // 创建下载提示
-                    const message = document.createElement('div');
-                    message.className = 'download-message';
-                    message.innerHTML = `
-                        <div class="download-message-content">
-                            <i class="fas fa-download"></i>
-                            <p>正在下载 "${title}"</p>
-                            <div class="download-progress">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <p class="download-note">这是一个演示功能，实际应用中会连接到真实文件</p>
-                        </div>
-                    `;
-                    
-                    message.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background: rgba(0, 0, 0, 0.7);
-                        backdrop-filter: blur(10px);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 10000;
-                        animation: fadeIn 0.3s ease;
-                    `;
-                    
-                    document.body.appendChild(message);
-                    
-                    // 模拟下载进度
-                    const progressBar = message.querySelector('.progress-bar');
-                    let progress = 0;
-                    const interval = setInterval(() => {
-                        progress += Math.random() * 10;
-                        if (progress >= 100) {
-                            progress = 100;
-                            clearInterval(interval);
-                            
-                            // 下载完成
-                            setTimeout(() => {
-                                message.innerHTML = `
-                                    <div class="download-message-content">
-                                        <i class="fas fa-check-circle" style="color:#4CAF50;font-size:3rem;"></i>
-                                        <p>"${title}" 下载完成！</p>
-                                        <button class="close-message-btn">关闭</button>
-                                    </div>
-                                `;
-                                
-                                message.querySelector('.close-message-btn').addEventListener('click', () => {
-                                    message.remove();
-                                });
-                            }, 500);
-                        }
-                        progressBar.style.width = progress + '%';
-                    }, 100);
-                    
-                    // 点击背景关闭
-                    message.addEventListener('click', function(e) {
-                        if (e.target === this) {
-                            this.remove();
-                            clearInterval(interval);
-                        }
-                    });
-                });
-            });
-            
-            // 教程分类功能
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            // 为所有毛玻璃卡片添加鼠标悬停效果增强
-            const glassCards = document.querySelectorAll('.glass-card');
-            glassCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.backdropFilter = 'blur(15px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.backdropFilter = 'blur(10px)';
-                });
-            });
-            
-            // 技能条动画
-            const skillBars = document.querySelectorAll('.skill-level');
-            
-            // 使用Intersection Observer API实现滚动时显示动画
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.3
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 当技能条进入视口时，触发宽度动画
-                        const skillLevel = entry.target;
-                        const width = skillLevel.style.width;
-                        skillLevel.style.width = '0';
-                        
-                        setTimeout(() => {
-                            skillLevel.style.transition = 'width 1.5s ease-in-out';
-                            skillLevel.style.width = width;
-                        }, 200);
-                        
-                        // 停止观察该元素
-                        observer.unobserve(skillLevel);
-                    }
-                });
-            }, observerOptions);
-            
-            // 观察所有技能条
-            skillBars.forEach(bar => {
-                observer.observe(bar);
-            });
-            
-            // 社交媒体按钮点击效果
-            const socialButtons = document.querySelectorAll('.social-btn');
-            socialButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // 创建涟漪效果
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.classList.add('ripple');
-                    
-                    this.appendChild(ripple);
-                    
-                    // 移除涟漪元素
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-            
-            // 添加一些动态背景效果
-            const backgroundArea = document.querySelector('.background-area');
-            
-            // 创建更多背景形状
-            for (let i = 0; i < 5; i++) {
-                const shape = document.createElement('div');
-                shape.classList.add('bg-shape');
-                
-                // 随机位置和大小
-                const size = Math.random() * 150 + 50;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                
-                shape.style.width = size + 'px';
-                shape.style.height = size + 'px';
-                shape.style.left = posX + '%';
-                shape.style.top = posY + '%';
-                
-                // 随机颜色
-                const colors = [
-                    'rgba(255, 215, 0, 0.05)',
-                    'rgba(255, 170, 0, 0.05)',
-                    'rgba(255, 255, 255, 0.03)'
-                ];
-                shape.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                backgroundArea.appendChild(shape);
-            }
-            
-            // 添加下载消息样式
-            const style = document.createElement('style');
-            style.textContent = `
-                .download-message-content {
-                    background: rgba(255, 255, 255, 0.2);
-                    backdrop-filter: blur(20px);
-                    border-radius: 20px;
-                    padding: 40px;
-                    text-align: center;
-                    max-width: 400px;
-                    width: 90%;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-                }
-                
-                .download-message-content i {
-                    font-size: 4rem;
-                    color: rgba(255, 255, 255, 0.9);
-                    margin-bottom: 20px;
-                }
-                
-                .download-message-content p {
-                    color: #fff;
-                    font-size: 1.2rem;
-                    margin-bottom: 20px;
-                }
-                
-                .download-progress {
-                    height: 8px;
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 4px;
-                    overflow: hidden;
-                    margin: 20px 0;
-                }
-                
-                .progress-bar {
-                    height: 100%;
-                    background: linear-gradient(90deg, #ffa100, #ff7b00);
-                    border-radius: 4px;
-                    width: 0%;
-                    transition: width 0.3s ease;
-                }
-                
-                .download-note {
-                    font-size: 0.9rem !important;
-                    color: rgba(255, 255, 255, 0.7) !important;
-                    font-style: italic;
-                }
-                
-                .close-message-btn {
-                    background: rgba(255, 255, 255, 0.25);
-                    color: #fff;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    padding: 10px 30px;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    margin-top: 20px;
-                }
-                
-                .close-message-btn:hover {
-                    background: rgba(255, 255, 255, 0.35);
-                    transform: translateY(-2px);
-                }
-                
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            console.log('页面初始化完成');
-        });
-        
-        // 监听哈希变化
-        window.addEventListener('hashchange', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash && ['home', 'download', 'tutorial'].includes(hash)) {
-                switchPage(hash);
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

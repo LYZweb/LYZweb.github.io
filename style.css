@@ -1,3 +1,40 @@
+/* 添加苹方字体定义 */
+@font-face {
+    font-family: 'PingFang SC';
+    src: local('PingFang SC Regular'), local('PingFangSC-Regular'),
+         url('https://fonts.gstatic.com/s/pingfangsc/v14/6xK3dSBYK5SV7KmJfPwHsoZ.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: local('PingFang SC Medium'), local('PingFangSC-Medium'),
+         url('https://fonts.gstatic.com/s/pingfangsc/v14/6xKydSBYK5SV7KmJfPwHsoYtkGY.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: local('PingFang SC Semibold'), local('PingFangSC-Semibold'),
+         url('https://fonts.gstatic.com/s/pingfangsc/v14/6xKydSBYK5SV7KmJfPwHsoaNkGY.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: local('PingFang SC Bold'), local('PingFangSC-Bold'),
+         url('https://fonts.gstatic.com/s/pingfangsc/v14/6xKydSBYK5SV7KmJfPwHsoadkGY.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* 基础样式重置 */
 * {
     margin: 0;
@@ -6,15 +43,14 @@
 }
 
 body {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
     background: linear-gradient(135deg, #ffbb35, #ffaa56);
     color: #333;
     min-height: 100vh;
     overflow-x: hidden;
     padding: 20px;
     line-height: 1.6;
-}
-
+    font-weight: 500;
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -108,7 +144,7 @@ body {
 /* 页面内容区域 */
 .page-content {
     position: relative;
-    padding-top: 30px; 
+    padding-top: 30px;
 }
 
 .page {
@@ -543,38 +579,13 @@ body {
     margin: 0 auto;
     width: auto;
     min-width: 140px;
+    border: none;
 }
 
 .download-btn:hover {
     background: rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-}
-
-.download-stats {
-    display: flex;
-    justify-content: space-around;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 25px;
-    margin-top: 40px;
-}
-
-.download-stats .stat {
-    text-align: center;
-}
-
-.download-stats .stat-number {
-    display: block;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #fff !important;
-    line-height: 1;
-    margin-bottom: 5px;
-}
-
-.download-stats .stat-label {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* 教程页面样式 */
@@ -596,34 +607,6 @@ body {
     margin-bottom: 30px;
 }
 
-.tutorial-categories {
-    display: flex;
-    gap: 15px;
-    margin: 25px 0;
-    flex-wrap: wrap;
-}
-
-.category-btn {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.category-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.category-btn.active {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-}
-
 .tutorial-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -640,6 +623,7 @@ body {
     transition: transform 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
     min-height: 280px;
+    cursor: pointer;
 }
 
 .tutorial-item:hover {
@@ -716,9 +700,9 @@ body {
 
 .tutorial-cta {
     text-align: center;
-    padding: 30px;
+    padding: 25px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 12px;
     margin-top: 30px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -726,26 +710,211 @@ body {
 .tutorial-cta p {
     color: rgba(255, 255, 255, 0.95) !important;
     margin-bottom: 20px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .back-home-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    padding: 12px 25px;
-    border-radius: 10px;
-    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 8px;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    border: none;
 }
 
 .back-home-btn:hover {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+}
+
+/* ========== 文章详情页面样式 ========== */
+
+.article-section {
+    min-height: auto;
+    padding: 30px !important;
+    width: 100%;
+}
+
+.article-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.back-to-tutorial-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+}
+
+.back-to-tutorial-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.article-header h2 {
+    color: #fff !important;
+    font-size: 2.2rem;
+    margin: 10px 0 15px;
+    padding: 0 80px;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.article-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.article-meta i {
+    color: #fa8072;
+    font-size: 0.9rem;
+}
+
+.article-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.article-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.2));
+}
+
+.article-content {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 30px 0;
+    padding: 20px 0;
+}
+
+.article-content h3 {
+    color: #fff !important;
+    font-size: 1.6rem;
+    margin: 25px 0 12px;
+    border-left: 4px solid #fa8072;
+    padding-left: 12px;
+}
+
+.article-content p {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.article-content ul, .article-content ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.article-content li {
+    margin-bottom: 8px;
+}
+
+.article-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.article-content pre {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+}
+
+.article-content blockquote {
+    border-left: 4px solid #fa8072;
+    padding-left: 15px;
+    margin: 15px 0;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.article-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 新下载按钮样式 */
+.download-article-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(76, 175, 80, 0.25);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    cursor: pointer;
+    border: none;
+}
+
+.download-article-btn:hover {
+    background: rgba(76, 175, 80, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.25);
+}
+
+.download-article-btn i {
+    font-size: 1.1rem;
 }
 
 /* 页脚 */
@@ -774,6 +943,22 @@ body {
     text-decoration: underline;
 }
 
+/* 涟漪效果 */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 /* 响应式设计 */
 @media (min-width: 768px) {
     .main-content {
@@ -782,7 +967,8 @@ body {
     
     /* 下载和教程页面使用全宽布局 */
     #download .main-content,
-    #tutorial .main-content {
+    #tutorial .main-content,
+    #article-detail .main-content {
         grid-template-columns: 1fr !important;
     }
     
@@ -862,29 +1048,6 @@ body {
     .tutorial-meta {
         flex-direction: column;
     }
-    
-    /* 下载页面响应式 */
-    .download-section .main-content {
-        grid-template-columns: 1fr;
-        max-width: 100%;
-    }
-}
-
-/* 对于非常大的屏幕，限制最大列数 */
-@media (min-width: 1400px) {
-    .download-items {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .tutorial-list {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 @media (max-width: 1024px) {
@@ -960,21 +1123,48 @@ body {
         height: 180px;
         min-width: auto;
     }
-}
-
-/* 涟漪效果 */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
+    
+    /* 文章详情页面响应式 */
+    .article-section {
+        padding: 20px !important;
+    }
+    
+    .article-header h2 {
+        font-size: 1.6rem;
+        padding: 0 60px;
+        margin-top: 35px;
+    }
+    
+    .back-to-tutorial-btn {
+        position: static;
+        margin-bottom: 15px;
+        width: auto;
+        display: inline-flex;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .article-image {
+        height: 200px;
+    }
+    
+    .article-content {
+        font-size: 1rem;
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+    
+    .article-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .article-footer {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
@@ -986,4 +1176,80 @@ body {
 /* 确保所有页面内容都充分利用空间 */
 .page {
     width: 100%;
+}
+
+/* 下载消息样式 */
+.download-message-content {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.download-message-content i {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+
+.download-message-content p {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.download-note {
+    font-size: 0.9rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-style: italic;
+    margin-bottom: 30px !important;
+}
+
+.download-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.confirm-download-btn {
+    background: rgba(76, 175, 80, 0.25);
+    color: #fff;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.confirm-download-btn:hover {
+    background: rgba(76, 175, 80, 0.35);
+    transform: translateY(-2px);
+}
+
+.cancel-download-btn {
+    background: rgba(244, 67, 54, 0.25);
+    color: #fff;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-download-btn:hover {
+    background: rgba(244, 67, 54, 0.35);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
