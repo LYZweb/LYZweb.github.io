@@ -715,7 +715,35 @@ class SnakeGame {
 // 贪吃蛇游戏实例
 let snakeGame = null;
 
-// 页面切换函数
+// ========== 方向按钮控制函数 ==========
+
+// 方向按钮点击处理函数
+function handleDirectionButtonClick(direction) {
+    if (!snakeGame || !snakeGame.gameRunning || snakeGame.isPaused) {
+        return;
+    }
+    
+    console.log('方向按钮点击:', direction);
+    
+    // 添加视觉反馈
+    const button = directionButtons[direction];
+    if (button) {
+        button.classList.add('button-press-animation');
+        setTimeout(() => {
+            button.classList.remove('button-press-animation');
+        }, 200);
+    }
+    
+    // 添加震动反馈（移动设备）
+    if (navigator.vibrate) {
+        navigator.vibrate(50); // 震动50毫秒
+    }
+    
+    // 改变蛇的方向
+    snakeGame.changeDirection(direction);
+}
+
+// ========== 页面切换函数 ==========
 function switchPage(pageId) {
     console.log('切换到页面:', pageId);
     
@@ -757,7 +785,7 @@ function switchPage(pageId) {
     return false;
 }
 
-// 加载文章函数
+// ========== 文章相关函数 ==========
 function loadArticle(title) {
     const article = articles[title];
     if (!article) return;
@@ -775,7 +803,7 @@ function loadArticle(title) {
     document.getElementById('article-content').innerHTML = article.content;
 }
 
-// 跳转到下载页面或直接下载的函数
+// ========== 下载相关函数 ==========
 function goToDownload() {
     if (currentArticle && currentArticle.downloadUrl) {
         // 跳转到下载页面，同时传递文章信息
@@ -855,7 +883,7 @@ function goToDownload() {
     }
 }
 
-// 初始化贪吃蛇游戏
+// ========== 初始化贪吃蛇游戏 ==========
 function initGame() {
     console.log('初始化游戏...');
     
@@ -872,7 +900,7 @@ function initGame() {
         return;
     }
     
-    // 按键控制
+    // ========== 键盘控制 ==========
     document.addEventListener('keydown', (e) => {
         if (!snakeGame || !snakeGame.gameRunning || snakeGame.isPaused) return;
         
@@ -896,7 +924,9 @@ function initGame() {
         }
     });
     
-    // 按钮事件绑定 - 修复按钮点击问题
+    // ========== 游戏控制按钮事件绑定 ==========
+    
+    // 开始游戏按钮
     const startGameBtn = document.getElementById('startGame');
     if (startGameBtn) {
         startGameBtn.addEventListener('click', () => {
@@ -907,6 +937,7 @@ function initGame() {
         });
     }
     
+    // 开始游戏按钮（屏幕）
     const startFromScreenBtn = document.getElementById('startFromScreen');
     if (startFromScreenBtn) {
         startFromScreenBtn.addEventListener('click', () => {
@@ -917,6 +948,7 @@ function initGame() {
         });
     }
     
+    // 暂停/继续游戏按钮
     const pauseGameBtn = document.getElementById('pauseGame');
     if (pauseGameBtn) {
         pauseGameBtn.addEventListener('click', () => {
@@ -944,6 +976,43 @@ function initGame() {
             }
         });
     });
+    
+    // ========== 方向按钮事件绑定 ==========
+    const directionButtons = {
+        up: document.getElementById('upBtn'),
+        down: document.getElementById('downBtn'),
+        left: document.getElementById('leftBtn'),
+        right: document.getElementById('rightBtn')
+    };
+
+    // 为每个方向按钮添加触摸和点击事件
+    Object.entries(directionButtons).forEach(([direction, button]) => {
+        if (!button) return;
+        
+        // 点击事件（鼠标）
+        button.addEventListener('click', () => {
+            handleDirectionButtonClick(direction);
+        });
+        
+        // 触摸事件（移动设备）
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            handleDirectionButtonClick(direction);
+            
+            // 添加触摸反馈
+            button.classList.add('button-press-animation');
+            setTimeout(() => {
+                button.classList.remove('button-press-animation');
+            }, 200);
+        });
+        
+        // 防止双击缩放
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+        });
+    });
+    
+    // ========== 难度控制 ==========
     
     // 难度显示点击事件 - 点击切换难度
     const difficultyDisplay = document.querySelector('.difficulty-display');
@@ -988,6 +1057,8 @@ function initGame() {
         });
     }
     
+    // ========== 返回按钮 ==========
+    
     // 返回介绍按钮
     const backHomeBtn = document.getElementById('backHome');
     if (backHomeBtn) {
@@ -1004,7 +1075,7 @@ function initGame() {
     console.log('游戏初始化完成');
 }
 
-// 哈希变化监听
+// ========== 哈希变化监听 ==========
 function handleHashChange() {
     const hash = window.location.hash.substring(1);
     console.log('当前哈希:', hash);
@@ -1025,11 +1096,11 @@ function handleHashChange() {
     }
 }
 
-// 页面加载完成后执行
+// ========== 页面初始化 ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('页面初始化开始...');
     
-    // 导航菜单切换
+    // ========== 导航菜单切换 ==========
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.querySelector('.nav-links');
     
@@ -1060,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 导航链接点击事件
+    // ========== 导航链接点击事件 ==========
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1072,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 返回按钮点击事件
+    // ========== 返回按钮点击事件 ==========
     document.querySelectorAll('.back-home-btn, .back-to-tutorial-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1084,13 +1155,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 下载按钮事件（原来的分享按钮）
+    // ========== 文章下载按钮事件 ==========
     const downloadBtn = document.getElementById('downloadArticleBtn');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', goToDownload);
     }
     
-    // 教程项点击事件
+    // ========== 教程项点击事件 ==========
     document.querySelectorAll('.tutorial-item').forEach(item => {
         item.style.cursor = 'pointer';
         
@@ -1109,7 +1180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 下载按钮事件
+    // ========== 下载按钮事件 ==========
     document.querySelectorAll('.download-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const downloadUrl = this.getAttribute('data-download-url');
@@ -1167,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 初始加载
+    // ========== 初始加载 ==========
     setTimeout(() => {
         handleHashChange();
         
@@ -1179,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
     
-    // 监听哈希变化
+    // ========== 监听哈希变化 ==========
     window.addEventListener('hashchange', handleHashChange);
     
     console.log('页面初始化完成');

@@ -411,17 +411,49 @@
                             </div>
                         </div>
                         
+                        <!-- 添加移动设备方向控制按钮 -->
+                        <div class="mobile-controls">
+                            <div class="direction-controls">
+                                <button class="direction-btn up-btn" id="upBtn" title="向上">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <div class="horizontal-controls">
+                                    <button class="direction-btn left-btn" id="leftBtn" title="向左">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button class="direction-btn down-btn" id="downBtn" title="向下">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <button class="direction-btn right-btn" id="rightBtn" title="向右">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="control-hint">
+                                <p><i class="fas fa-mobile-alt"></i> 移动设备可使用方向按钮控制</p>
+                            </div>
+                        </div>
+                        
                         <!-- 游戏说明 -->
                         <div class="game-instructions">
                             <h3><i class="fas fa-info-circle"></i> 游戏说明</h3>
                             <div class="instructions-grid">
                                 <div class="instruction-item">
                                     <div class="instruction-icon">
-                                        <i class="fas fa-arrow-up"></i>
+                                        <i class="fas fa-keyboard"></i>
                                     </div>
                                     <div class="instruction-text">
-                                        <h4>控制方式</h4>
+                                        <h4>电脑控制</h4>
                                         <p>键盘方向键 ↑ ↓ ← → 控制蛇的移动方向</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-item">
+                                    <div class="instruction-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="instruction-text">
+                                        <h4>手机控制</h4>
+                                        <p>使用屏幕上的方向按钮控制蛇的移动</p>
                                     </div>
                                 </div>
                                 <div class="instruction-item">
@@ -431,15 +463,6 @@
                                     <div class="instruction-text">
                                         <h4>食物</h4>
                                         <p>吃到红色食物得10分，蛇身长度+1</p>
-                                    </div>
-                                </div>
-                                <div class="instruction-item">
-                                    <div class="instruction-icon">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </div>
-                                    <div class="instruction-text">
-                                        <h4>游戏结束</h4>
-                                        <p>碰到墙壁或自己身体游戏结束</p>
                                     </div>
                                 </div>
                                 <div class="instruction-item">
