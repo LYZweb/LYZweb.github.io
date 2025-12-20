@@ -1118,17 +1118,27 @@ body {
     display: none;
 }
 
+/* 游戏和控制的横向布局容器 */
+.game-and-controls-container {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: stretch;
+    width: 100%;
+}
+
 /* 游戏画布容器 */
 .game-container {
     position: relative;
-    width: 100%;
+    flex: 2;
     max-width: 100% !important;
-    margin: 0 auto 30px;
+    margin: 0 !important;
     border-radius: 15px;
     overflow: hidden;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     aspect-ratio: 3/2;
+    min-width: 0;
 }
 
 #gameCanvas {
@@ -1193,14 +1203,18 @@ body {
     font-weight: 700;
 }
 
-/* ========== 移动设备方向控制按钮样式 ========== */
+/* ========== 移动设备方向控制按钮样式 - 修改为始终显示并排布局 ========== */
 .mobile-controls {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 25px;
-    margin: 25px 0;
+    margin: 0 !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    display: none; /* 默认隐藏，移动端显示 */
+    display: flex !important; /* 始终显示 */
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 200px;
 }
 
 .direction-controls {
@@ -1208,7 +1222,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    max-width: 300px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -1303,8 +1317,9 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 25px;
-    margin-top: 20px;
+    margin-top: 25px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
 }
 
 .game-instructions h3 {
@@ -1613,9 +1628,10 @@ body {
 
 /* 响应式设计 - 移动端 */
 @media (max-width: 768px) {
-    /* 移动端显示方向控制按钮 */
-    .mobile-controls {
-        display: block;
+    /* 游戏和方向控制按钮在移动端垂直排列 */
+    .game-and-controls-container {
+        flex-direction: column;
+        gap: 20px;
     }
     
     .direction-btn {
@@ -1846,4 +1862,11 @@ body {
 /* 确保所有页面内容都充分利用空间 */
 .page {
     width: 100%;
+}
+
+/* 游戏页面特定样式 */
+#game .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }

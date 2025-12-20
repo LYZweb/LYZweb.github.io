@@ -6,7 +6,7 @@ const articles = {
         date: '2024-03-20',
         readTime: '10分钟阅读',
         category: '软件教程',
-        image: './images/office.jpeg',
+        image: 'images/officeb.png',
         downloadUrl: 'https://share.feijipan.com/s/QPZqPPsL?code=LYZ6',
         content: `
             <h3>Office激活工具简介</h3>
@@ -61,13 +61,13 @@ const articles = {
             </div>
         `
     },
-    '电脑工具软件破解指南': {
+    'misakaX软件使用指南': {
         id: 'pc-tool-crack-guide',
         title: '电脑工具软件破解指南',
         date: '2024-03-18',
         readTime: '20分钟阅读',
         category: '设备破解',
-        image: 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        image: 'images/misakaXb.jpeg',
         downloadUrl: 'https://share.feijipan.com/s/X1ZqP2yW?code=LYZ6',
         content: `
             <h3>工具简介</h3>
@@ -132,7 +132,7 @@ const articles = {
         date: '2024-03-22',
         readTime: '15分钟阅读',
         category: '安卓定制',
-        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        image: 'images/lddb.jpg',
         downloadUrl: 'https://share.feijipan.com/s/dQZqP5om?code=LYZ6',
         content: `
             <h3>什么是灵动岛？</h3>
@@ -233,6 +233,9 @@ class SnakeGame {
         this.gameInterval = null;
         this.isPaused = false;
         this.gameRunning = false;
+        
+        // 边缘安全距离 - 新添加的属性
+        this.edgeSafeDistance = 2; // 距离边缘的安全格子数
         
         // 确保画布有正确的尺寸
         this.resizeCanvas();
@@ -450,8 +453,10 @@ class SnakeGame {
             foodOnSnake = false;
             attempts++;
             
-            this.food.x = Math.floor(Math.random() * gridWidth);
-            this.food.y = Math.floor(Math.random() * gridHeight);
+            // 生成在安全区域内的随机位置
+            // 确保食物距离边缘至少有 edgeSafeDistance 个格子的距离
+            this.food.x = Math.floor(Math.random() * (gridWidth - 2 * this.edgeSafeDistance)) + this.edgeSafeDistance;
+            this.food.y = Math.floor(Math.random() * (gridHeight - 2 * this.edgeSafeDistance)) + this.edgeSafeDistance;
             
             // 检查食物是否在蛇身上
             for (let segment of this.snake) {
@@ -463,10 +468,15 @@ class SnakeGame {
             
             // 防止无限循环
             if (attempts > maxAttempts) {
-                console.warn('生成食物失败，尝试次数过多');
+                console.warn('生成食物失败，尝试次数过多，放宽边缘限制');
+                // 如果尝试次数过多，放宽边缘限制
+                this.food.x = Math.floor(Math.random() * gridWidth);
+                this.food.y = Math.floor(Math.random() * gridHeight);
                 break;
             }
         } while (foodOnSnake);
+        
+        console.log('食物生成位置:', this.food.x, this.food.y, '网格尺寸:', gridWidth, 'x', gridHeight);
     }
     
     update() {
@@ -726,7 +736,8 @@ function handleDirectionButtonClick(direction) {
     console.log('方向按钮点击:', direction);
     
     // 添加视觉反馈
-    const button = directionButtons[direction];
+    const buttonId = direction + 'Btn';
+    const button = document.getElementById(buttonId);
     if (button) {
         button.classList.add('button-press-animation');
         setTimeout(() => {
@@ -812,14 +823,14 @@ function goToDownload() {
         
         // 可选：滚动到对应的下载项目
         setTimeout(() => {
-            // 根据文章标题找到对应的下载项并高亮显示
+            // 根据文章标题确定搜索关键词
             const articleTitle = currentArticle.title;
             let searchTerm = '';
             
             // 根据文章标题确定搜索关键词
             if (articleTitle.includes('Office')) {
                 searchTerm = 'Office激活工具（MAC）';
-            } else if (articleTitle.includes('电脑工具')) {
+            } else if (articleTitle.includes('电脑工具') || articleTitle.includes('misakaX')) {
                 searchTerm = '电脑工具 iPad&iPhone破解功能软件';
             } else if (articleTitle.includes('安卓灵动岛')) {
                 searchTerm = '安卓系统灵动岛软件(破解版)';
@@ -978,15 +989,11 @@ function initGame() {
     });
     
     // ========== 方向按钮事件绑定 ==========
-    const directionButtons = {
-        up: document.getElementById('upBtn'),
-        down: document.getElementById('downBtn'),
-        left: document.getElementById('leftBtn'),
-        right: document.getElementById('rightBtn')
-    };
-
+    const directionButtons = ['up', 'down', 'left', 'right'];
+    
     // 为每个方向按钮添加触摸和点击事件
-    Object.entries(directionButtons).forEach(([direction, button]) => {
+    directionButtons.forEach(direction => {
+        const button = document.getElementById(direction + 'Btn');
         if (!button) return;
         
         // 点击事件（鼠标）
@@ -1009,6 +1016,24 @@ function initGame() {
         // 防止双击缩放
         button.addEventListener('touchend', (e) => {
             e.preventDefault();
+        });
+        
+        // 鼠标按下效果
+        button.addEventListener('mousedown', () => {
+            button.style.transform = 'translateY(2px) scale(0.95)';
+            button.style.boxShadow = 'inset 0 3px 5px rgba(0, 0, 0, 0.2)';
+        });
+        
+        // 鼠标释放效果
+        button.addEventListener('mouseup', () => {
+            button.style.transform = '';
+            button.style.boxShadow = '';
+        });
+        
+        // 鼠标离开时重置效果
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = '';
+            button.style.boxShadow = '';
         });
     });
     
