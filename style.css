@@ -67,7 +67,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     z-index: 1000;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(15px);
@@ -1215,6 +1215,7 @@ body {
     flex-direction: column;
     justify-content: center;
     min-width: 200px;
+    max-width: 400px;
 }
 
 .direction-controls {
@@ -1246,6 +1247,9 @@ body {
     touch-action: manipulation;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    /* 确保没有阴影和缩放效果 */
+    box-shadow: none !important;
+    transform: none !important;
 }
 
 .direction-btn i {
@@ -1253,51 +1257,67 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* 不同方向按钮的颜色 */
+/* 不同方向按钮的颜色 - 确保没有阴影和缩放 */
 .up-btn {
     background: rgba(76, 175, 80, 0.25);
     border-color: rgba(76, 175, 80, 0.4);
+    box-shadow: none;
+    transform: none;
 }
 
 .up-btn:hover, .up-btn:active {
     background: rgba(76, 175, 80, 0.4);
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important; /* 只保留上移效果，不缩放 */
+    /* 删除阴影效果 */
+    box-shadow: none;
 }
 
 .down-btn {
     background: rgba(33, 150, 243, 0.25);
     border-color: rgba(33, 150, 243, 0.4);
+    box-shadow: none;
+    transform: none;
 }
 
 .down-btn:hover, .down-btn:active {
     background: rgba(33, 150, 243, 0.4);
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important; /* 只保留上移效果，不缩放 */
+    /* 删除阴影效果 */
+    box-shadow: none;
 }
 
 .left-btn {
     background: rgba(255, 193, 7, 0.25);
     border-color: rgba(255, 193, 7, 0.4);
+    box-shadow: none;
+    transform: none;
 }
 
 .left-btn:hover, .left-btn:active {
     background: rgba(255, 193, 7, 0.4);
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important; /* 只保留上移效果，不缩放 */
+    /* 删除阴影效果 */
+    box-shadow: none;
 }
 
 .right-btn {
     background: rgba(156, 39, 176, 0.25);
     border-color: rgba(156, 39, 176, 0.4);
+    box-shadow: none;
+    transform: none;
 }
 
 .right-btn:hover, .right-btn:active {
     background: rgba(156, 39, 176, 0.4);
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important; /* 只保留上移效果，不缩放 */
+    /* 删除阴影效果 */
+    box-shadow: none;
 }
 
-/* 按下效果 */
+/* 按下效果 - 确保没有inset阴影和缩放 */
 .direction-btn:active {
-    transform: translateY(1px) scale(0.95);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px) !important; /* 按下时轻微下移，不缩放 */
+    box-shadow: none;
 }
 
 .control-hint {
@@ -1427,24 +1447,23 @@ body {
     }
 }
 
-/* 添加按钮点击动画 */
+/* 修改按钮点击动画 - 删除缩放效果 */
 @keyframes buttonPress {
     0% {
-        transform: scale(1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        opacity: 1;
     }
     50% {
-        transform: scale(0.95);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        opacity: 0.7; /* 改为改变透明度而不是大小 */
     }
     100% {
-        transform: scale(1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        opacity: 1;
     }
 }
 
 .button-press-animation {
     animation: buttonPress 0.2s ease;
+    /* 确保动画不影响按钮大小 */
+    transform: none !important;
 }
 
 /* 下载消息样式 */
