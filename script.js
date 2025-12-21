@@ -61,9 +61,9 @@ const articles = {
             </div>
         `
     },
-    '电脑工具软件破解指南': {
+    'misakaX软件使用指南': {
         id: 'pc-tool-crack-guide',
-        title: '电脑工具软件破解指南',
+        title: 'misakaX软件使用指南',
         date: '2024-03-18',
         readTime: '20分钟阅读',
         category: '设备破解',
